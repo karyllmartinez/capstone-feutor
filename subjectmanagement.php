@@ -82,18 +82,9 @@
                         <h4>Subject List</h4>
                     </div>
                     <div class="card-body" style="width: 550px; overflow-y: auto;">
-                    <?php
-                        // Check if session message is set
-                        if (isset($_SESSION['deletemessage'])) {
-                            // Display session message
-                            echo '<div class="alert alert-info">' . $_SESSION['deletemessage'] . '</div>';
-
-                            // Clear session message
-                            unset($_SESSION['deletemessage']);
-                        }
-                        ?>
-                        <?php include('getsubjects.php'); ?>
-                        <?php include('deletesubject.php'); ?>
+                  
+                        <?php include('php/getsubjects.php'); ?>
+                    
                     </div>
                 </div>
             </div>

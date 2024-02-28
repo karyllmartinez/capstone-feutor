@@ -14,11 +14,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteSubject'])) {
 
     // Execute the deletion statement
     if ($deleteStmt->execute()) {
-        // Subject deleted successfully
-        $_SESSION['deletemessage'] = "Subject deleted successfully";
+        // Check if any rows were affected
+        if ($deleteStmt->affected_rows > 0) {
+            // Subject deleted successfully
+            $_SESSION['message'] = "Subject deleted successfully";
+        } else {
+            // No rows were affected, meaning the subject was not found
+            $_SESSION['message'] = "Error: Subject not found or already deleted";
+        }
     } else {
-        // Error occurred while deleting subject
-        $_SESSION['deletemessage'] = "Error: Unable to delete subject";
+        // Error occurred while executing the deletion statement
+        $_SESSION['message'] = "Error: Unable to delete subject - " . $deleteStmt->error;
     }
 
     // Close deletion statement
@@ -27,4 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteSubject'])) {
 
 // Close connection
 $conn->close();
+
+// Redirect back to subjectmanagement.php
+header("Location: subjectmanagement.php");
+exit();
 ?>

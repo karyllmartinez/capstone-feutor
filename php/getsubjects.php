@@ -2,12 +2,34 @@
 // Include database connection
 include('connection/dbconfig.php');
 
-// Include getsubjects.php
-include('getsubjects.php');
+// Initialize search variables
+$search = "";
+if(isset($_GET['search'])) {
+    $search = $_GET['search'];
+}
+
+// Check if "View All" button is clicked
+if(isset($_GET['view_all'])) {
+    // Reset search variable
+    $search = "";
+}
 
 // SQL query to fetch subjects
 $sql = "SELECT * FROM subjects";
+
+// Add search condition if search term is provided
+if(!empty($search)) {
+    $sql .= " WHERE subject_name LIKE '%$search%'";
+}
+
 $result = $conn->query($sql);
+
+// Display search form
+echo '<form action="" method="GET">';
+echo '<input type="text" name="search" placeholder="Search by subject name" value="' . $search . '">';
+echo '<button type="submit">Search</button>';
+echo '<a href="?view_all" class="btn btn-primary ml-2">View All</a>';
+echo '</form>';
 
 // Display subjects in a table
 if ($result->num_rows > 0) {

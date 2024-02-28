@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="s-registercode.php" method="POST">
+                        <form action="t-registercode.php" method="POST">
 
                             <div class="mb-3">
                                 <label>First Name</label>
@@ -36,11 +36,48 @@
                                 <label>Last Name</label>
                                 <input type="text" name="lastname" required placeholder="Enter Last Name" class="form-control">
                             </div>
-                            
                             <div class="mb-3">
                                 <label>Email Address</label>
                                 <input type="email" name="email" required placeholder="Enter Email Address" class="form-control">
                             </div>
+                            <div class="mb-3">
+                                <label>Degree Program</label>
+                                <input type="text" name="degree" required placeholder="Enter Degree Program" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Year</label>
+                                <input type="text" name="year" required placeholder="Enter Year" class="form-control">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label>Subject Expertise</label>
+                                <select name="subject" required class="form-control">
+                                    <option value="">Select Subject Expertise</option>
+                                    <?php
+                                        // Include database connection
+                                        include('connection/dbconfig.php');
+
+                                        // SQL query to fetch subjects
+                                        $sql = "SELECT * FROM subjects";
+                                        $result = $conn->query($sql);
+
+                                        // Display subjects as options
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo '<option value="' . $row['subject_name'] . '">' . $row['subject_name'] . '</option>';
+                                        }
+
+                                        // Close connection
+                                        $conn->close();
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>G-drive Link</label>
+                                <input type="text" name="g_drive_link" required placeholder="Enter G-drive Link" class="form-control">
+                            </div>
+                            
                             <div class="mb-3">
                                 <label>Password</label>
                                 <input type="password" name="password" required placeholder="Enter Password" class="form-control">
@@ -74,5 +111,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
