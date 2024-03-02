@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+include ('php/s-restrict.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

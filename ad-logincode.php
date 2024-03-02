@@ -37,5 +37,7 @@ if(isset($_POST['login_button']))
     $_SESSION['message'] = "Invalid Username or Password"; // Update error message
     header("Location: ad-login.php");
     exit(0);
+
+    
 }
 ?>

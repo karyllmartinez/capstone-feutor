@@ -1,13 +1,12 @@
 <?php
 session_start();
+include ('php/t-restrict.php');
 
-include ('php/s-restrict.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login System in PHP MySQL</title>
+    <title>Tutor Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -29,11 +28,11 @@ include ('php/s-restrict.php');
 
                 <div class="card shadow">
                     <div class="card-header text-center">
-                        <h4>Login System in PHP MySQL</h4>
+                        <h4>Tutor Login</h4>
                     </div>
                     <div class="card-body">
 
-                        <form action="s-logincode.php" method="POST">
+                        <form action="t-logincode.php" method="POST">
 
                             <div class="mb-3">
                                 <label>Email ID</label>
@@ -49,7 +48,7 @@ include ('php/s-restrict.php');
 
                         </form>
 
-                        <p class="text-center">Don't have an account? <a href="s-registration.php">Signup here</a></p>
+                        <p class="text-center">Don't have an account? <a href="t-registration.php">Signup here</a></p>
 
                     </div>
                 </div>

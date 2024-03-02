@@ -1,9 +1,15 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+include ('php/t-restrict.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Tutor Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     
@@ -30,19 +36,25 @@
 
                             <div class="mb-3">
                                 <label>First Name</label>
-                                <input type="text" name="firstname" required placeholder="Enter First Name" class="form-control">
+                                <input type="text" name="firstName" required placeholder="Enter First Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label>Last Name</label>
-                                <input type="text" name="lastname" required placeholder="Enter Last Name" class="form-control">
+                                <input type="text" name="lastName" required placeholder="Enter Last Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label>Email Address</label>
                                 <input type="email" name="email" required placeholder="Enter Email Address" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label>Degree Program</label>
-                                <input type="text" name="degree" required placeholder="Enter Degree Program" class="form-control">
+                                <label>Degree Program / Level of Highschool</label>
+                                <select name="degreeProgram" required class="form-select">
+                                    <option value="">Select Degree Program</option>
+                                    <option value="BSIT">BSIT</option>
+                                    <option value="BSBA">BSBA</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Senior High School">Senior High School</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -50,32 +62,10 @@
                                 <input type="text" name="year" required placeholder="Enter Year" class="form-control">
                             </div>
                             
-                            <div class="mb-3">
-                                <label>Subject Expertise</label>
-                                <select name="subject" required class="form-control">
-                                    <option value="">Select Subject Expertise</option>
-                                    <?php
-                                        // Include database connection
-                                        include('connection/dbconfig.php');
-
-                                        // SQL query to fetch subjects
-                                        $sql = "SELECT * FROM subjects";
-                                        $result = $conn->query($sql);
-
-                                        // Display subjects as options
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo '<option value="' . $row['subject_name'] . '">' . $row['subject_name'] . '</option>';
-                                        }
-
-                                        // Close connection
-                                        $conn->close();
-                                    ?>
-                                </select>
-                            </div>
 
                             <div class="mb-3">
                                 <label>G-drive Link</label>
-                                <input type="text" name="g_drive_link" required placeholder="Enter G-drive Link" class="form-control">
+                                <input type="text" name="gdriveLink" required placeholder="Enter G-drive Link" class="form-control">
                             </div>
                             
                             <div class="mb-3">
@@ -96,7 +86,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <p>Already have an account? <a href="s-login.php">Login here</a></p>
+                                <p>Already have an account? <a href="t-login.php">Login here</a></p>
                             </div>
 
                         </form>
@@ -109,5 +99,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    </script>
 </body>
 </html>

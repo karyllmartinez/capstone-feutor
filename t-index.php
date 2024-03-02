@@ -1,12 +1,8 @@
 <?php
 session_start();
 
-include('php/s-auth.php');
-
-
-
+include ('php/t-auth.php');
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -54,16 +50,19 @@ include('php/s-auth.php');
           </li>
           <li class="nav-item dropdown user-dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo $user_firstname; ?>
+            <?php echo $tutor_firstname; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="s-logout.php">Logout</a>
+                <a class="dropdown-item" href="t-logout.php">Logout</a>
             </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+
+
   
   <!-- jQuery, Popper.js, and Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -71,10 +70,10 @@ include('php/s-auth.php');
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-
   <script src="disableBackButton.js"></script>
 
 
 </body>
 </html>
+
 
