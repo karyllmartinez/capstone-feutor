@@ -1,5 +1,9 @@
+<?php
+// Start session
+session_start();
 
-
+include('php/ad-auth.php');
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>

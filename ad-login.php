@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-// Redirect to dashboard if admin is already authenticated
-if(isset($_SESSION['admin_authenticated']) && $_SESSION['admin_authenticated'] === true) {
-    header("Location: ad-index.php");
-    exit(0);
-}
+include('php/ad-restrict.php');
 ?>
 
 <!DOCTYPE html>

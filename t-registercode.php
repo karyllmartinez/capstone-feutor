@@ -13,6 +13,9 @@ if(isset($_POST['register_btn']))
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+    $approvalStatus = "Pending";
+
+
     // Check Email
     $checkemail = "SELECT email FROM tutor WHERE email=? LIMIT 1";
     $stmt_checkemail = $conn->prepare($checkemail);
@@ -35,10 +38,10 @@ if(isset($_POST['register_btn']))
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Prepare a statement
-            $stmt = $conn->prepare("INSERT INTO tutor (firstName, lastName, email, degreeProgram, year, gdriveLink, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO tutor (firstName, lastName, email, degreeProgram, year, gdriveLink, password, approvalStatus ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Bind the parameters to the statement as strings. 
-            $stmt->bind_param("sssssss", $firstname, $lastname, $email, $degreeProgram, $year, $gdriveLink, $hashed_password);
+            $stmt->bind_param("sssssss", $firstname, $lastname, $email, $degreeProgram, $year, $gdriveLink, $hashed_password, $approvalStatus);
 
             // Execute the prepared statement
             $stmt->execute();

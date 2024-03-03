@@ -8,7 +8,7 @@ if(isset($_POST['login_button']))
     $password = $_POST['password'];
 
     // Retrieve hashed password from the database based on email
-    $query = "SELECT tutorID, firstName, lastName, email, degreeProgram, year, gdriveLink, password, role, approvalStatus FROM tutor WHERE email=?";
+    $query = "SELECT tutorID, firstName, lastName, email, degreeProgram, year, gdriveLink, password, approvalStatus FROM tutor WHERE email=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -27,7 +27,7 @@ if(isset($_POST['login_button']))
                 'tutor_id' => $row['tutorID'],
                 'tutor_fullname' => $row['firstName'].' '.$row['lastName'],
                 'tutor_email' => $row['email'],
-                'tutor_role' => $row['role']
+              
 
             ];
             $_SESSION['message'] = "You are Logged In Successfully";

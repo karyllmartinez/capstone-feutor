@@ -3,7 +3,7 @@ session_start();
 
 include ('php/t-auth.php');
 include('connection/dbconfig.php'); // Include your database connection file
-include('php/approvalStatus.php');
+
 ?>
 
 
@@ -57,6 +57,7 @@ include('php/approvalStatus.php');
             <?php echo $tutor_firstname; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="t-profile.php">View Profile</a>
                 <a class="dropdown-item" href="t-logout.php">Logout</a>
             </div>
           </li>
@@ -65,20 +66,8 @@ include('php/approvalStatus.php');
     </div>
   </nav>
 
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card text-center">
-          <div class="card-header">
-            <h2 class="card-title">Approval Status</h2>
-          </div>
-          <div class="card-body">
-            <p><?php echo $status_message; ?></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
+  
 
   
   <!-- jQuery, Popper.js, and Bootstrap JS -->
