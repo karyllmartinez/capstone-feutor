@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('connection/dbconfig.php'); 
-
+error_reporting(E_ALL); ini_set('display_errors', 1);
 if(isset($_POST['register_btn']))
 {
     $firstname = $_POST['firstName'];
@@ -15,7 +15,6 @@ if(isset($_POST['register_btn']))
 
     $approvalStatus = "Pending";
 
-
     // Check Email
     $checkemail = "SELECT email FROM tutor WHERE email=? LIMIT 1";
     $stmt_checkemail = $conn->prepare($checkemail);
@@ -27,7 +26,7 @@ if(isset($_POST['register_btn']))
     {
         // Email Already Exists
         $_SESSION['message'] = "Email already exists";
-        header("Location: t-registration.php");
+        header("Location: s-registration.php");
         exit(0);
     }
     else
@@ -41,7 +40,7 @@ if(isset($_POST['register_btn']))
             $stmt = $conn->prepare("INSERT INTO tutor (firstName, lastName, email, degreeProgram, year, gdriveLink, password, approvalStatus ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Bind the parameters to the statement as strings. 
-            $stmt->bind_param("sssssss", $firstname, $lastname, $email, $degreeProgram, $year, $gdriveLink, $hashed_password, $approvalStatus);
+            $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $degreeProgram, $year, $gdriveLink, $hashed_password, $approvalStatus);
 
             // Execute the prepared statement
             $stmt->execute();
