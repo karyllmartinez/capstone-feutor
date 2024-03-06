@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+include('connection/dbconfig.php');
 $message = '';
 
 
@@ -33,27 +34,40 @@ if (isset($_POST['register_btn'])) {
                 // Insert data into database
                 include('connection/dbconfig.php'); // Include your database connection file
                 
-                // Process other form data
-                $fullname = $_POST['fullName'];
-                $subject = implode(',', $_POST['subjectExpertise']);
-                $degreeProgram = $_POST['degreeProgram'];
-                $availDayandTime = $_POST['availDayandTime'];
+                // Get the form data
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $subjectExpertise = implode(',', $_POST['subjectExpertise']); // Convert array to comma-separated string
+                $availableDaysTime = $_POST['availableDaysTime'];
                 $teachingMode = $_POST['teachingMode'];
                 $ratePerHour = $_POST['ratePerHour'];
                 $bio = $_POST['bio'];
 
-                // Assuming tutorID is obtained from the session or elsewhere
-                $tutorID = $_SESSION['tutorID']; // Adjust this accordingly
-                
-                // Insert data into database
-                $sql = "INSERT INTO tutorProfile (profileImage, tutorID, fullName, subjectExpertise, degreeProgram, availableDaysTime, teachingMode, ratePerHour, bio) 
-                        VALUES ('$dest_path', '$tutorID', '$fullname', '$subject', '$degreeProgram', '$availDayandTime', '$teachingMode', '$ratePerHour', '$bio')";
+                // Get the tutor ID of the currently logged-in user from the session
+                $tutorID = $_SESSION['auth_tutor']['tutor_id'];
 
-                if ($conn->query($sql) === TRUE) {
-                    $message = "New record created successfully";
+                // Debugging: Output the values to check
+                echo "First Name: " . $firstName . "<br>";
+                echo "Last Name: " . $lastName . "<br>";
+                echo "Subject Expertise: " . $subjectExpertise . "<br>";
+                echo "Available Days & Time: " . $availableDaysTime . "<br>";
+                echo "Teaching Mode: " . $teachingMode . "<br>";
+                echo "Rate Per Hour: " . $ratePerHour . "<br>";
+                echo "Bio: " . $bio . "<br>";
+
+
+               // Update query with corrected syntax
+                $query = "UPDATE tutor SET profilePicture=?, firstName=?, lastName=?, subjectExpertise=?, availableDaysTime=?, teachingMode=?, ratePerHour=?, bio=? WHERE tutorID=?";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("ssssssssi", $dest_path, $firstName, $lastName, $subjectExpertise, $availableDaysTime, $teachingMode, $ratePerHour, $bio, $tutorID);
+
+                // Execute the prepared statement
+                if ($stmt->execute()) {
+                    $message = "Profile updated successfully";
                 } else {
-                    $message = "Error: " . $sql . "<br>" . $conn->error;
+                    $message = "Error updating profile: " . $stmt->error;
                 }
+
             } else {
                 $message = 'An error occurred while uploading the file to the destination directory.';
             }
@@ -68,3 +82,4 @@ if (isset($_POST['register_btn'])) {
 $_SESSION['message'] = $message;
 header("Location: t-profile.php");
 ?>
+

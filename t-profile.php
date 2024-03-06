@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 include ('php/t-auth.php');
 include('connection/dbconfig.php'); // Include your database connection file
@@ -73,10 +72,10 @@ include('connection/dbconfig.php'); // Include your database connection file
                     </div>
                     <div class="card-body">
 
-                        <form action="t-profilecode.php" method="POST">
+                    <form action="t-profilecode.php" method="POST" enctype="multipart/form-data">
 
-
-                        <div class="mb-3 text-center">
+                    
+                    <div class="mb-3 text-center">
                         <img id="profilePicturePreview" src="#" alt="Profile Picture Preview" class="rounded-circle" style="max-width: 100px; max-height: 100px;">
 
                           </div>
@@ -87,11 +86,16 @@ include('connection/dbconfig.php'); // Include your database connection file
                           </div>
 
 
+                            <div class="mb-3">
+                                <label>First Name</label>
+                                <input type="text" name="firstName" required placeholder="Enter First Name" class="form-control">
+                            </div>
 
                             <div class="mb-3">
-                                <label>Full Name</label>
-                                <input type="text" name="fullname" required placeholder="Enter First Name" class="form-control">
+                                <label>Last Name</label>
+                                <input type="text" name="lastName" required placeholder="Enter Last Name" class="form-control">
                             </div>
+                           
                             
                             <div class="mb-3">
                                 <label>Subject Expertise</label>
@@ -101,14 +105,11 @@ include('connection/dbconfig.php'); // Include your database connection file
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label>Degree Program / Year Level</label>
-                                <input type="text" name="degreeProgram" required placeholder="Ex: BSIT - 3rd Year" class="form-control">
-                            </div>
+                            
 
                             <div class="mb-3">
                                 <label>Available Days & Time</label>
-                                <input type="text" name="availDayandTime" required placeholder="Ex: Mon - 3:00pm - 5:00pm" class="form-control">
+                                <input type="text" name="availableDaysTime" required placeholder="Ex: Mon - 3:00pm - 5:00pm" class="form-control">
                             </div>
 
                             <div class="mb-3">

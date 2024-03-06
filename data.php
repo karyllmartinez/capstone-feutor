@@ -8,7 +8,7 @@ require 'connection/dbconfig.php';
     <title>Data</title>
   </head>
   <body>
-    <table border = 1 cellspacing = 0 cellpadding = 10>
+    <table border = 1 cellspacing = 0 cellpadding = 10>                                                                                         
       <tr>
         <td>#</td>
         <td>Name</td>
@@ -16,14 +16,14 @@ require 'connection/dbconfig.php';
       </tr>
       <?php
       $i = 1;
-      $rows = mysqli_query($conn, "SELECT * FROM tb_upload ORDER BY id DESC")
+      $rows = mysqli_query($conn, "SELECT * FROM tb_upload")
       ?>
 
       <?php foreach ($rows as $row) : ?>
       <tr>
         <td><?php echo $i++; ?></td>
         <td><?php echo $row["name"]; ?></td>
-        <td> <img src="img/<?php echo $row["image"]; ?>" width = 200 title="<?php echo $row['image']; ?>"> </td>
+        <td><img src="../capstone-feutor/img/<?php echo $row["image"]; ?>" width="200" title="<?php echo $row['image']; ?>"></td>
       </tr>
       <?php endforeach; ?>
     </table>

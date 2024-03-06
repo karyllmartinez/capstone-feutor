@@ -35,7 +35,7 @@ if(isset($_POST["submit"])){
       $newImageName = uniqid();
       $newImageName .= '.' . $imageExtension;
 
-      move_uploaded_file($tmpName, 'img/' . $newImageName);
+      move_uploaded_file($tmpName, '../capstone-feutor/img/' . $newImageName);
       // If you have 3 columns (name, image) in the table:
         $query = "INSERT INTO tb_upload (name, image) VALUES ('$name', '$newImageName')";
       if (!mysqli_query($conn, $query)) {
