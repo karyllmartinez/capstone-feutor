@@ -1,3 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 0 15px; /* adjust this value as needed */
+}
 
 .bg-green {
     background-color: green;
@@ -36,3 +45,16 @@ th:nth-child(2), td:nth-child(2) {
 .btn-secondary{
   float: right;
 }
+.s-header {
+  color: rgb(0, 0, 0);
+  font-size: 36px;
+  margin-top: 30px;
+}
+.customcard{
+  position:absolute;
+  margin-left: 30%;
+  width: 18rem; 
+}
+
+
+

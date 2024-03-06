@@ -13,10 +13,11 @@ include('connection/dbconfig.php'); // Include your database connection file
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    
 </head>
 <body>
-    <!-- Navigation Bar -->
+   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-green bg-green">
     <div class="container">
       <!-- Brand -->
@@ -60,6 +61,9 @@ include('connection/dbconfig.php'); // Include your database connection file
       </div>
     </div>
   </nav>
+
+  
+
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -119,7 +123,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                                     <option value="" selected disabled>Select Preferred Mode</option>
                                     <option value="Online">Online</option>
                                     <option value="School">School</option>
-                                    <option value="Both">Online & School</option>
+                                    <option value="Online & School">Online & School</option>
                                 </select>
                             </div>
 
@@ -148,6 +152,11 @@ include('connection/dbconfig.php'); // Include your database connection file
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    
     <script>
         $(document).ready(function() {
             $('.form-select').select2();
