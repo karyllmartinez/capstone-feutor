@@ -24,7 +24,7 @@ if(isset($_POST['login_button']))
             // Authentication successful
             $_SESSION['authentication'] = true;
             $_SESSION['auth_user'] = [
-                'user_id' => $row['id'],
+                'user_id' => $row['studentID'],
                 'user_fullname' => $row['firstname'].' '.$row['lastname'],
                 'user_email' => $row['email'],
             ];

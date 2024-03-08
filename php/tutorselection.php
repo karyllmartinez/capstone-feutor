@@ -153,7 +153,7 @@
 
            */
 
-           echo " <button class='btn btn-outline-success'>Book a Session</button>";
+           echo " <a href='s-sessionform.php?tutor=" . urlencode($row['firstName'] . " " . $row['lastName']) . "' class='btn btn-outline-success'>Book a Session</a>";
            
            echo " <button class='btn btn-outline-secondary'>Message</button>";
           echo "</div>";
