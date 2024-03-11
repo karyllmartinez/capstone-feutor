@@ -46,6 +46,21 @@ include ('php/s-restrict.php');
                                 <input type="email" name="email" required placeholder="Enter Email Address" class="form-control">
                             </div>
                             <div class="mb-3">
+                                <label>Degree Program / Level of Highschool</label>
+                                <select name="degreeProgram" required class="form-select">
+                                    <option value="">Select Degree Program</option>
+                                    <option value="BSIT">BSIT</option>
+                                    <option value="BSBA">BSBA</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Senior High School">Senior High School</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Year</label>
+                                <input type="text" name="year" required placeholder="Enter Year" class="form-control">
+                            </div>
+                            <div class="mb-3">
                                 <label>Password</label>
                                 <input type="password" name="password" required placeholder="Enter Password" class="form-control">
                             </div>

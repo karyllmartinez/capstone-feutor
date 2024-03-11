@@ -1,12 +1,15 @@
 <?php
 session_start();
 include('connection/dbconfig.php'); 
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 if(isset($_POST['register_btn']))
 {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
+    $degreeProgram = $_POST['degreeProgram'];
+    $year = $_POST['year'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
@@ -32,10 +35,10 @@ if(isset($_POST['register_btn']))
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Prepare a statement
-            $stmt = $conn->prepare("INSERT INTO student (firstname, lastname, email, password) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO student (firstname, lastname, email, degreeProgram, year, password) VALUES (?, ?, ?, ?, ?,?)");
 
             // Bind the parameters to the statement as strings. 
-            $stmt->bind_param("ssss", $firstname, $lastname, $email, $hashed_password);
+            $stmt->bind_param("ssssss", $firstname, $lastname, $email, $degreeProgram, $year, $hashed_password);
 
             // Execute the prepared statement
             $stmt->execute();

@@ -1,7 +1,5 @@
 <?php
-
-
-
+session_start();
 // Assuming you have fetched the tutor's teachingMode from the database
 $tutorTeachingMode = "Online"; // Replace this with the actual value from the database
 
@@ -50,8 +48,8 @@ if (isset($_GET['tutor'])) {
         echo "<p>Subject Expertise: " . $subjectExpertise . "</p>";
         echo "<p>Available Days & Time: " . $availableDaysTime . "</p>";
 
+        // Now, you can include the code to display the teaching mode as per your requirement
     }
     
 }
 ?>
-<!-- Display studentID in the form -->

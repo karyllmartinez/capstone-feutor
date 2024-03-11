@@ -103,6 +103,8 @@ include('connection/dbconfig.php'); // Include your database connection file
 
   </div>
 
+
+
   <!-- Content area to display tutor data -->
   <div class="container mt-3" style = "margin-top:2.3% !important; margin-right: 10%;">
   <h1 class = "s-header">Find tutors for private lessons.</h1>

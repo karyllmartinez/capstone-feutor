@@ -28,12 +28,15 @@ if(isset($_POST['login_button']))
                 'user_fullname' => $row['firstname'].' '.$row['lastname'],
                 'user_email' => $row['email'],
             ];
+        
+   
             $_SESSION['message'] = "You are Logged In Successfully";
             header("Location: s-index.php");
             exit(0);
         }
     }
 
+    
     // Authentication failed
     $_SESSION['message'] = "Invalid Email or Password";
     header("Location: s-login.php");

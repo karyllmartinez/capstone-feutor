@@ -90,68 +90,91 @@
         font-weight: bold;
         letter-spacing: 0.05em;
       
-        bottom:10%;
-       left:79%;
+        bottom:30%;
+       left:80%;
        width:200px;
        height:40px;
        position: absolute;
        z-index: 2;
    
       }
-      .btn-outline-secondary{
-       background-color: #ffffff;
-       border-color: #0F422A;
-       font-weight: bold;
-       letter-spacing: 0.05em;
-       bottom:35%;
-       left:79%;
-       width:200px;
-       height:40px;
-       position: absolute;
-       z-index: 2;
-       color:#0F422A;
-      }
-      .rate{
+   
+      .duration{
         bottom:59%;
-        left:88%;
+        left:83%;
         width:200px;
         height:40px;
         position: absolute;
-        z-index: 2;
-        font-size: 23px;
+        font-size: 20px;
         font-weight: 300px;
 
       }
       
       </style>";
-      // SQL query to fetch data from the tutor table where approvalStatus is 'Approved'
-      $sql = "SELECT tutorID, firstName, lastName, degreeProgram, year, profilePicture, subjectExpertise, availableDaysTime, teachingMode, ratePerHour, bio FROM tutor WHERE approvalStatus = 'Approved' AND subjectExpertise IS NOT NULL AND availableDaysTime IS NOT NULL AND teachingMode IS NOT NULL AND ratePerHour IS NOT NULL AND bio IS NOT NULL";
 
-      $result = mysqli_query($conn, $sql);
+            // Retrieve logged-in tutor's tutorID
+        $tutorID = $_SESSION['auth_tutor']['tutor_id'];
+        // Query to fetch sessions for the logged-in tutor with student names
+        $sql = "SELECT DATE_FORMAT(s.sessionDate, '%M %e, %Y') AS formattedSessionDate, TIME_FORMAT(s.startTime, '%h:%i %p') AS formattedStartTime, TIME_FORMAT(s.endTime, '%h:%i %p') AS formattedEndTime, s.duration, s.subject, s.teachingMode, s.need, s.paymentID, s.status, 
+        CONCAT(st.firstname, ' ', st.lastname) AS studentFullName, st.degreeProgram, st.year, t.ratePerHour
+        FROM session s
+        INNER JOIN student st ON s.studentID = st.studentID
+        INNER JOIN tutor t ON s.tutorID = t.tutorID
+        WHERE s.tutorID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $tutorID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Check if the prepare statement was successful
+        if (!$stmt) {
+            die("Prepare failed: " . htmlspecialchars($conn->error));
+        }
+
+        $stmt->bind_param("i", $tutorID);
+        $stmt->execute();
+
+        // Check if the execute statement was successful
+        if ($stmt->error) {
+            die("Execute failed: " . htmlspecialchars($stmt->error));
+        }
+
+        $result = $stmt->get_result();
 
       // Check if the query was successful
       if ($result) {
         // Loop through the result set and display the data
         while ($row = mysqli_fetch_assoc($result)) {
           
-          echo "<div class='col-md-12 mb-3' style = 'margin-left: 290px; width:100% !important;'>";
+          echo "<div class='col-md-12 mb-3' style = 'margin-left:120px; width:100% !important;'>";
           echo "<div class='card shadow custom-card' style='height: 200px; margin-top: 1%;'>";
           echo "<div class='card-body'>";
           // Display tutor information
-          echo "<h4 class='tutorName'>" . $row['firstName'] . " " . $row['lastName']  ."</h4>";
-          echo "<p class='degreeProgram'>" . "<img src = 'icons/grad.png' class = 'icongrad'/>" . $row['degreeProgram'] . " - " . $row['year'] ."</p>";
-          echo "<p class='card-text'><img src='" . $row['profilePicture'] . "' alt='Profile Picture' class='profile-picture'></p>";
-          echo "<p class='mode'>" . "<img src = 'icons/mode.png' class = 'iconmode'/>"  . $row['teachingMode'] . "</p>";
-          echo "<p class='subj'> " . "<img src = 'icons/subj.png' class = 'iconsubj'/>"  . $row['subjectExpertise'] . "</p>";
-          echo "<p class='bio'>" . substr($row['bio'], 0, 155) . (strlen($row['bio']) > 75 ? '...' : '') . "</p>";
-          echo "<p class='rate'> ₱" . $row['ratePerHour'] . "/hr</p>";
+          echo "<h4 class='tutorName'>" . $row['studentFullName']  ."</h4>";
+          echo "<p class='card-text'><img src='icons/default.jpeg' alt='Profile Picture' class='profile-picture'></p>";
+          echo "<p class='degreeProgram'>" . "<img src = 'icons/grad.png' class = 'icongrad'/>" . $row["degreeProgram"] . " - " . $row['year'] ."</p>";
+          echo "<p class='mode'>" . "<img src = 'icons/mode.png' class = 'iconmode'/>"  . $row['teachingMode'] . "  ". "<strong>|</strong>" . "  ". $row["formattedSessionDate"] .  "  ". "<strong>|</strong>" . "  " .   $row["formattedStartTime"] ." - ".   $row["formattedEndTime"] ."</p>";
+          echo "<p class='subj'> " . "<img src = 'icons/subj.png' class = 'iconsubj'/>"  . $row['subject'] . "</p>";
+          echo "<p class='bio'>" . substr($row['need'], 0, 155) . (strlen($row['need']) > 75 ? '...' : '') . "</p>";
+        
+         // Calculate total cost
+        $totalCost = $row['duration'] * $row['ratePerHour'];
 
-          echo "<a href='s-sessionform.php?"  .  "&tutor=" . urlencode($row['firstName'] . " " . $row['lastName']) ."' class='btn btn-outline-success'>Book a Session</a>";
+        // Check if duration has a decimal value
+        if ((float)$row['duration'] == (int)$row['duration']) {
+            // Display duration without decimal value
+            echo "<p class='duration'>" . (int)$row['duration'] . "hrs". " = ₱" . number_format($totalCost, 2) . "</p>";
+        } else {
+            // Display duration with decimal value
+            echo "<p class='duration'>" . $row['duration'] . "hrs</p>";
+        }
 
-           echo " <button class='btn btn-outline-secondary'>Message</button>";
+           echo " <button class='btn btn-outline-success'>View More Details</button>";
           echo "</div>";
           echo "</div>";
           echo "</div>";
+          
+         
         }
       } else {
         echo "Error: " . mysqli_error($conn);
@@ -160,3 +183,7 @@
       // Close connection
       mysqli_close($conn);
       ?>
+
+
+
+

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 include('connection/dbconfig.php');
 
 // Check if the user is logged in
@@ -10,8 +9,8 @@ if (!isset($_SESSION['authentication'])) {
     exit();
 }
 
-// Retrieve studentID from the session
-$studentID = $_SESSION['auth_user']['user_id'];
+// Get current logged-in user data
+$userID = $_SESSION['auth_user']['user_id']; // Assuming user_id is the ID of the user in the database
 
 // Get tutor data from the URL parameter (you need to implement this)
 $tutorID = $_POST['tutorID']; // Assuming you are passing the tutor ID as a parameter
@@ -21,7 +20,7 @@ $sessionDate = $_POST['sessionDate'];
 $startTime = $_POST['startTime'];
 $endTime = $_POST['endTime'];
 $duration = $_POST['duration'];
-$subject = $_POST['subjectExpertise'];
+$subject = $_POST['subject'];
 $teachingMode = $_POST['teachingMode'];
 $need = $_POST['need'];
 
@@ -29,7 +28,7 @@ $need = $_POST['need'];
 $query = "INSERT INTO session (tutorID, studentID, sessionDate, startTime, endTime, duration, subject, teachingMode, need, status) 
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("iississsss", $tutorID, $studentID, $sessionDate, $startTime, $endTime, $duration, $subject, $teachingMode, $need, $status);
+$stmt->bind_param("iississsss", $tutorID, $userID, $sessionDate, $startTime, $endTime, $duration, $subject, $teachingMode, $need, $status);
 
 // Set status to Pending by default
 $status = "Pending";

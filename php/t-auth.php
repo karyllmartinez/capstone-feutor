@@ -15,4 +15,6 @@ if(!isset($_SESSION['tutorauthentication']) || $_SESSION['tutorauthentication'] 
 
 // Set tutor first name for use in the t-index.php page
 $tutor_firstname = isset($_SESSION['auth_tutor']['tutor_fullname']) ? $_SESSION['auth_tutor']['tutor_fullname'] : '';
+$tutorID = isset($_SESSION['auth_tutor']['tutor_id']) ? $_SESSION['auth_tutor']['tutor_id'] : 'Tutor ID not found';
+  
 ?>

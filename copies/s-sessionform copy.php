@@ -7,7 +7,6 @@ include('connection/dbconfig.php'); // Include your database connection file
 include('php/tutorname.php'); // Include your database connection file
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +59,7 @@ include('php/tutorname.php'); // Include your database connection file
             <a class="nav-link" href="#">Notifications</a>
           </li>
           <li class="nav-item dropdown user-dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php echo $user_firstname; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="userDropdown">
@@ -137,7 +136,6 @@ include('php/tutorname.php'); // Include your database connection file
         </div>
     </div>
 </div>
-
     
 
 <!-- jQuery, Popper.js, and Bootstrap JS -->

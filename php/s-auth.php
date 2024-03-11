@@ -15,5 +15,6 @@ if(!isset($_SESSION['authentication']) || $_SESSION['authentication'] !== true) 
 
 // Set user first name for use in the index.php page
 $user_firstname = isset($_SESSION['auth_user']['user_fullname']) ? $_SESSION['auth_user']['user_fullname'] : '';
-$user_id = isset($_SESSION['auth_user']['user_id']) ? $_SESSION['auth_user']['user_id'] : '';
+$studentID = isset($_SESSION['auth_user']['user_id']) ? $_SESSION['auth_user']['user_id'] : '';
+
 ?>
