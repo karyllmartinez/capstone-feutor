@@ -115,12 +115,12 @@
             // Retrieve logged-in tutor's tutorID
         $tutorID = $_SESSION['auth_tutor']['tutor_id'];
         // Query to fetch sessions for the logged-in tutor with student names
-        $sql = "SELECT DATE_FORMAT(s.sessionDate, '%M %e, %Y') AS formattedSessionDate, TIME_FORMAT(s.startTime, '%h:%i %p') AS formattedStartTime, TIME_FORMAT(s.endTime, '%h:%i %p') AS formattedEndTime, s.duration, s.subject, s.teachingMode, s.need, s.paymentID, s.status, 
+        $sql = "SELECT s.sessionID, DATE_FORMAT(s.sessionDate, '%M %e, %Y') AS formattedSessionDate, TIME_FORMAT(s.startTime, '%h:%i %p') AS formattedStartTime, TIME_FORMAT(s.endTime, '%h:%i %p') AS formattedEndTime, s.duration, s.subject, s.teachingMode, s.need, s.paymentID, s.status, 
         CONCAT(st.firstname, ' ', st.lastname) AS studentFullName, st.degreeProgram, st.year, t.ratePerHour
         FROM session s
         INNER JOIN student st ON s.studentID = st.studentID
         INNER JOIN tutor t ON s.tutorID = t.tutorID
-        WHERE s.tutorID = ?";
+        WHERE s.tutorID = ? AND s.status = 'Pending'";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $tutorID);
         $stmt->execute();
@@ -145,7 +145,7 @@
       if ($result) {
         // Loop through the result set and display the data
         while ($row = mysqli_fetch_assoc($result)) {
-          
+          $sessionID = $row['sessionID'];
           echo "<div class='col-md-12 mb-3' style = 'margin-left:120px; width:100% !important;'>";
           echo "<div class='card shadow custom-card' style='height: 200px; margin-top: 1%;'>";
           echo "<div class='card-body'>";
@@ -169,7 +169,9 @@
             echo "<p class='duration'>" . $row['duration'] . "hrs</p>";
         }
 
-           echo " <button class='btn btn-outline-success'>View More Details</button>";
+        echo "<a href='t-sessiondetails.php?sessionID=" . $sessionID . "'>
+    <button class='btn btn-outline-success'>View More Details</button>
+</a>";
           echo "</div>";
           echo "</div>";
           echo "</div>";

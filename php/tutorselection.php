@@ -125,7 +125,9 @@
       
       </style>";
       // SQL query to fetch data from the tutor table where approvalStatus is 'Approved'
-      $sql = "SELECT tutorID, firstName, lastName, degreeProgram, year, profilePicture, subjectExpertise, availableDaysTime, teachingMode, ratePerHour, bio FROM tutor WHERE approvalStatus = 'Approved' AND subjectExpertise IS NOT NULL AND availableDaysTime IS NOT NULL AND teachingMode IS NOT NULL AND ratePerHour IS NOT NULL AND bio IS NOT NULL";
+      $sql = "SELECT tutorID, firstName, lastName, degreeProgram, year, profilePicture, subjectExpertise, availableDaysTime, teachingMode, ratePerHour, bio 
+      FROM tutor 
+      WHERE approvalStatus = 'Approved' AND subjectExpertise IS NOT NULL AND availableDaysTime IS NOT NULL AND teachingMode IS NOT NULL AND ratePerHour IS NOT NULL AND bio IS NOT NULL";
 
       $result = mysqli_query($conn, $sql);
 
@@ -147,8 +149,14 @@
           echo "<p class='rate'> ₱" . $row['ratePerHour'] . "/hr</p>";
 
           echo "<a href='s-sessionform.php?"  .  "&tutor=" . urlencode($row['firstName'] . " " . $row['lastName']) ."' class='btn btn-outline-success'>Book a Session</a>";
-
-           echo " <button class='btn btn-outline-secondary'>Message</button>";
+          $sessionID = $_GET['sessionID'];
+          if (isset($sessionID) && !empty($sessionID)) {
+            echo "<a href='t-sessiondetails.php?sessionID=$sessionID'>
+                <button class='btn btn-outline-success'>View More Details</button>
+            </a>";
+        } else {
+            
+        }
           echo "</div>";
           echo "</div>";
           echo "</div>";

@@ -49,7 +49,7 @@ include('connection/dbconfig.php'); // Include your database connection file
               Appointments
             </a>
             <div class="dropdown-menu" aria-labelledby="appointmentsDropdown">
-              <a class="dropdown-item" href="s-pending.php">Pending</a>
+              <a class="dropdown-item" href="#">Pending</a>
               <a class="dropdown-item" href="#">Accepted</a>
               <a class="dropdown-item" href="#">Declined</a>
               <a class="dropdown-item" href="#">Finished</a>
@@ -74,44 +74,7 @@ include('connection/dbconfig.php'); // Include your database connection file
     </div>
   </nav>
 
-  <div class="card" style="width: 23rem; height: 30%; position: absolute; margin-left: 5%; margin-top: 6%; border: 0.5px solid #ccc !important;">
-    <div class="card-body shadow">
-      <h5 class="card-title">What would you like to learn?</h5>
-      <div class="mb-3">
-          <select name="subjectExpertise[]" required class="form-select" multiple required placeholder = "Ex: Programming">
-          <option value="" disabled>Select Subject Expertise</option>
-              <?php include ('php/t-subj.php');?>
-          </select>
-      </div>
-
-      <h5 class="card-title">Lesson Location</h5>
-      <div class="container">
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="inSchoolCheckbox" name="inSchoolCheckbox">
-                    <label class="form-check-label" for="inSchoolCheckbox">In School</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="onlineCheckbox" name="onlineCheckbox">
-                    <label class="form-check-label" for="onlineCheckbox">Online</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-
-  </div>
-
-
-
-  <!-- Content area to display tutor data -->
-  <div class="container mt-3" style = "margin-top:2.3% !important; margin-right: 10%;">
-  <h1 class = "s-header">Find tutors for private lessons.</h1>
-    <div class="row justify-content-center">
-      <?php  include('php/tutorselection.php'); ?>
-    </div>
-  </div>
+  
 
   <!-- jQuery, Popper.js, and Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
