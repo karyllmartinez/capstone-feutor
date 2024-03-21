@@ -1,6 +1,5 @@
 <?php
-// Start session
-session_start();
+
 
 // Redirect to login page if the tutor user is not authenticated
 if(!isset($_SESSION['tutorauthentication']) || $_SESSION['tutorauthentication'] !== true) {

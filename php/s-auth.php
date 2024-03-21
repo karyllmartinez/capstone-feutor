@@ -1,6 +1,5 @@
 <?php
-// Start session
-session_start();
+
 
 // Redirect to login page if the user is not authenticated
 if(!isset($_SESSION['authentication']) || $_SESSION['authentication'] !== true) {

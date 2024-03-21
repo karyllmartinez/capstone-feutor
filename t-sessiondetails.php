@@ -49,9 +49,9 @@ ini_set('display_errors', 1);
               Appointments
             </a>
             <div class="dropdown-menu" aria-labelledby="appointmentsDropdown">
-              <a class="dropdown-item" href="#">Accepted</a>
-              <a class="dropdown-item" href="#">Declined</a>
-              <a class="dropdown-item" href="#">Finished</a>
+              <a class="dropdown-item" href="t-approved.php">Accepted</a>
+              <a class="dropdown-item" href="t-declined.php">Declined</a>
+              <a class="dropdown-item" href="t-finished.php">Finished</a>
            </div>
           </li>
           <li class="nav-item">
@@ -84,7 +84,7 @@ ini_set('display_errors', 1);
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-  <script src="disableBackButton.js"></script>
+ 
 
 
 </body>

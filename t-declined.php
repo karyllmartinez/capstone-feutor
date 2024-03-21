@@ -5,10 +5,6 @@ include ('php/t-auth.php');
 include('connection/dbconfig.php'); // Include your database connection file
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-
-
-
 ?>
 
 
@@ -37,7 +33,7 @@ ini_set('display_errors', 1);
   <nav class="navbar navbar-expand-lg navbar-green bg-green">
     <div class="container">
       <!-- Brand -->
-      <a class="navbar-brand" href="#">FEUTOR</a>
+      <a class="navbar-brand" href="#">PENDING SESSION DETAILS</a>
       <!-- Toggler Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,14 +42,14 @@ ini_set('display_errors', 1);
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Pending Request</a>
+            <a class="nav-link" href="t-dashboard.php">Declined Request</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="appointmentsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Appointments
             </a>
             <div class="dropdown-menu" aria-labelledby="appointmentsDropdown">
-            <a class="dropdown-item" href="t-approved.php">Accepted</a>
+              <a class="dropdown-item" href="t-approved.php">Accepted</a>
               <a class="dropdown-item" href="t-declined.php">Declined</a>
               <a class="dropdown-item" href="t-finished.php">Finished</a>
            </div>
@@ -78,18 +74,12 @@ ini_set('display_errors', 1);
     </div>
   </nav>
 
-  <!-- Content area to display tutor data -->
-  <div class="container mt-3" style = "margin-top:2.3% !important; margin-right: 35%;">
-    <div class="row justify-content-center">
-      <h1 style = "margin-left: 10%;">Your Pending Requests</h1>
-      <?php  include('php/studentselection.php'); ?>
+  <div class="container mt-3" style="margin-top:2.3% !important; margin-right: 20%;">
+        <h1 class="s-header">Declined Sessions</h1>
+        <div class="row justify-content-center">
+            <?php include('php/t-declinedsession.php'); ?>
+        </div>
     </div>
-  </div>
-
-
-
-  
-  
 
   
   <!-- jQuery, Popper.js, and Bootstrap JS -->
@@ -98,7 +88,7 @@ ini_set('display_errors', 1);
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-  <script src="disableBackButton.js"></script>
+ 
 
 
 </body>

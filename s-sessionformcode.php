@@ -38,7 +38,7 @@ $status = "Pending";
 if ($stmt->execute()) {
     // Session added successfully
     $_SESSION['message'] = "Session requested successfully.";
-    header("Location: s-index.php");
+    header("Location: s-pending.php");
     exit();
 } else {
     // Error in adding session

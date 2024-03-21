@@ -1,6 +1,5 @@
 <?php
- // Start session
-session_start();
+
 
 // Redirect to admin dashboard if admin user is authenticated
 if(isset($_SESSION['admin_authentication']) && $_SESSION['admin_authentication'] === true) {

@@ -40,18 +40,20 @@ include('php/tutorname.php'); // Include your database connection file
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Find a Tutor</a>
+          <a class="nav-link" href="s-index.php">Find a Tutor</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="appointmentsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Appointments
             </a>
             <div class="dropdown-menu" aria-labelledby="appointmentsDropdown">
-              <a class="dropdown-item" href="#">Pending</a>
-              <a class="dropdown-item" href="#">Accepted</a>
-              <a class="dropdown-item" href="#">Declined</a>
-              <a class="dropdown-item" href="#">Finished</a>
-           </div>
+            <a class="dropdown-item" href="s-pending.php">Pending</a>
+            
+                            <a class="dropdown-item" href="s-waitingforpayment.php">Waiting for Payment</a>
+                            <a class="dropdown-item" href="s-approved.php">Accepted</a>
+                            <a class="dropdown-item" href="#">Declined</a>
+                            <a class="dropdown-item" href="#">Finished</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Messages</a>
@@ -145,7 +147,7 @@ include('php/tutorname.php'); // Include your database connection file
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script src="disableBackButton.js"></script>
+
 <script src="js/sessionDuration.js"></script>
 
 <script>

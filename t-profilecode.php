@@ -56,7 +56,7 @@ if (isset($_POST['register_btn'])) {
                 echo "Teaching Mode: " . $teachingMode . "<br>";
                 echo "Rate Per Hour: " . $ratePerHour . "<br>";
                 echo "Bio: " . $bio . "<br>";
-            
+                
                 // Check if file was moved successfully
                 if (move_uploaded_file($fileTmpPath, $dest_path)) {
                     echo "File moved successfully to: " . $dest_path;

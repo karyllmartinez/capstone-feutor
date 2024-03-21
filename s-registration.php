@@ -9,29 +9,32 @@ include ('php/s-restrict.php');
 <head>
     <title>Student Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/s-registration.css">
 </head>
 <body>
     
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+    <div class="background-message">
+    <a href="s-login.php" class="btn btn-primary1">Sign In</a>
+   
+    </div>
 
-                <?php
-                    // Your message code
-                    if(isset($_SESSION['message']))
-                    {
-                        echo '<h4 class="alert alert-warning">'.$_SESSION['message'].'</h4>';
-                        unset($_SESSION['message']);
-                    } // Your message code
-                ?>
 
-                <div class="card shadow">
-                    <div class="card-header text-center">
-                        <h4>Student Registration</h4>
-                    </div>
-                    <div class="card-body">
+            <div class="registration-form">
+            <div class="card">
+            <div class="card-header">
+            <h1>SIGN UP AS STUDENT</h1>
+            </div>
+            
 
-                        <form action="s-registercode.php" method="POST">
+            <div class="card-body">
+            <?php if(isset($_SESSION['message'])): ?>
+            <div class="message-container">
+            <h4 class="alert alert-warning"><?= $_SESSION['message'] ?></h4>
+            </div>
+            <?php unset($_SESSION['message']); ?>
+            <?php endif; ?>
+
+                        <form action="s-registercode.php" method="POST" class="body-reg">
 
                             <div class="mb-3">
                                 <label>First Name</label>
@@ -49,8 +52,8 @@ include ('php/s-restrict.php');
                                 <label>Degree Program / Level of Highschool</label>
                                 <select name="degreeProgram" required class="form-select">
                                     <option value="">Select Degree Program</option>
-                                    <option value="BSIT">BSIT</option>
-                                    <option value="BSBA">BSBA</option>
+                                    <option value="BS in Information Technology">BS in Information Technology</option>
+                                    <option value="BS n Business Administration">BS in Business Administration</option>
                                     <option value="High School">High School</option>
                                     <option value="Senior High School">Senior High School</option>
                                 </select>
@@ -69,18 +72,10 @@ include ('php/s-restrict.php');
                                 <input type="password" name="confirm_password" required placeholder="Confirm Password" class="form-control">
                             </div>
                             
-                            <div class="mb-3">
-                                <button type="submit" name="register_btn" class="btn btn-primary">Register Now</button>
+                            <div class="mb-3 sign-up-buttons">
+                            <a href="land.php" class=" nope">I DON'T WANT TO SIGN UP</a>
+                            <button type="submit" name="register_btn" class="btn btn-primary regbtn">Submit</button>
                             </div>
-
-                            <div class="mb-3">
-                                <p class="text-center"><a href="land.php">I don't want to sign up</a></p>
-                            </div>
-
-                            <div class="mb-3">
-                                <p>Already have an account? <a href="s-login.php">Login here</a></p>
-                            </div>
-
                         </form>
 
                     </div>
@@ -93,5 +88,3 @@ include ('php/s-restrict.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-

@@ -10,11 +10,24 @@ include('php/ad-restrict.php');
     <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+<style>
+    body{
+        background-color: #D9D9D9;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      margin-top:4%;
+    }
+    h4{
+        text-align: center;
+        font-size:50px;
+    }
+    
+</style>
 <body>
     
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+  
 
             <?php
                     // Your message code
@@ -25,33 +38,29 @@ include('php/ad-restrict.php');
                     } // Your message code
                 ?>
 
-                <div class="card shadow">
-                    <div class="card-header text-center">
-                        <h4>Admin Login</h4>
-                    </div>
-                    <div class="card-body">
+                        <img src = icons/adminlogo.png width="600" height="600" >
+                        <h4>FEUTOR ADMIN CENTER</h4>
+                    
+                  
 
-                        <form action="ad-logincode.php" method="POST">
-
-                            <div class="mb-3">
-                                <label>Username</label>
-                                <input type="text" name="username" placeholder="Enter your Username">
-                            </div>
-                            <div class="mb-3">
-                                <label>Password</label>
-                                <input type="password" name="password" placeholder="Enter Password">
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="login_button" class="btn btn-primary">Login</button>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 22vh;">
+                        <form action="ad-logincode.php" method="POST" style="text-align: center;">
+    <div class="mb-3">
+        <input type="text" class="form-control" name="username" placeholder="Enter your Username" style="width: 300px;">
     </div>
+    <div class="mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Enter Password" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <button type="submit" name="login_button" class="btn btn-primary" style="margin-top: 5%;width: 50%; background-color: #1D5512; color: white; border-radius: 30px;">Login</button>
+    </div>
+</form>
+
+</div>
+
+
+                 
+         
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

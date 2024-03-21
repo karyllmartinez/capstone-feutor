@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+
 
 // Redirect to dashboard if admin is already authenticated
 if(isset($_SESSION['admin_authenticated']) && $_SESSION['admin_authenticated'] === true) {
