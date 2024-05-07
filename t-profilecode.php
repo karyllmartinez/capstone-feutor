@@ -39,7 +39,6 @@ if (isset($_POST['register_btn'])) {
                 // Get the form data
                 $firstName = $_POST['firstName'];
                 $lastName = $_POST['lastName'];
-                $subjectExpertise = implode(',', $_POST['subjectExpertise']); // Convert array to comma-separated string
                 $availableDaysTime = $_POST['availableDaysTime'];
                 $teachingMode = $_POST['teachingMode'];
                 $ratePerHour = $_POST['ratePerHour'];
@@ -51,7 +50,6 @@ if (isset($_POST['register_btn'])) {
                 // Debugging: Output the values to check
                 echo "First Name: " . $firstName . "<br>";
                 echo "Last Name: " . $lastName . "<br>";
-                echo "Subject Expertise: " . $subjectExpertise . "<br>";
                 echo "Available Days & Time: " . $availableDaysTime . "<br>";
                 echo "Teaching Mode: " . $teachingMode . "<br>";
                 echo "Rate Per Hour: " . $ratePerHour . "<br>";
@@ -65,9 +63,9 @@ if (isset($_POST['register_btn'])) {
                 }
             
                 // Update query with corrected syntax
-                $query = "UPDATE tutor SET profilePicture=?, firstName=?, lastName=?, subjectExpertise=?, availableDaysTime=?, teachingMode=?, ratePerHour=?, bio=? WHERE tutorID=?";
+                $query = "UPDATE tutor SET profilePicture=?, firstName=?, lastName=?,  availableDaysTime=?, teachingMode=?, ratePerHour=?, bio=? WHERE tutorID=?";
                 $stmt = $conn->prepare($query);
-                $stmt->bind_param("ssssssssi", $dest_path, $firstName, $lastName, $subjectExpertise, $availableDaysTime, $teachingMode, $ratePerHour, $bio, $tutorID);
+                $stmt->bind_param("sssssssi", $dest_path, $firstName, $lastName, $availableDaysTime, $teachingMode, $ratePerHour, $bio, $tutorID);
             
                 // Execute the prepared statement
                 if ($stmt->execute()) {

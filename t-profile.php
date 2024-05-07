@@ -103,13 +103,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             </div>
                            
                             
-                            <div class="mb-3">
-                                <label>Subject Expertise</label>
-                                <select name="subjectExpertise[]" required class="form-select" multiple>
-                                <option value="" disabled>Select Subject Expertise</option>
-                                    <?php include ('php/t-subj.php');?>
-                                </select>
-                            </div>
+                            
 
                             
 

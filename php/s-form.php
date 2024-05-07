@@ -47,7 +47,7 @@ if (isset($_GET['tutor'])) {
         // Display tutor information
         echo "<input type='hidden' name='tutorID' value='" . $tutorID . "'>"; // Hidden input field for tutorID
 
-        echo "<p>Subject Expertise: " . $subjectExpertise . "</p>";
+       
         echo "<p>Available Days & Time: " . $availableDaysTime . "</p>";
 
     }
