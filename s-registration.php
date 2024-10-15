@@ -45,7 +45,7 @@ include ('php/s-restrict.php');
                                 <input type="text" name="lastname" required placeholder="Enter Last Name" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label>Email Address</label>
+                                <label>School Email Address</label>
                                 <input type="email" name="email" required placeholder="Enter Email Address" class="form-control">
                             </div>
                             <div class="mb-3">

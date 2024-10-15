@@ -173,20 +173,20 @@ if ($result) {
         <button class='btn btn-outline-custom1'>View Details</button>
       </a><br><br>";
      
-       // Display "Mark as Finished" button if the session status is "Paid"
-       if ($row['status'] == 'Paid') {
-        echo "<a href='#'>
-        <button class='btn btn-outline-custom2'>Mark as Finished</button>
-      </a><br><br>";
+      if ($row['status'] == 'Paid') {
+        echo "<a href='php/finishedsession.php?sessionID=" . $sessionID . "'>
+                <button class='btn btn-outline-custom2'>Mark as Finished</button>
+              </a><br><br>";
+    } else if ($row['status'] == 'Waiting for Payment') {
+        echo "<a href='php/declinedsession.php?sessionID=" . $sessionID . "'>
+                <button class='btn btn-outline-custom2'>Decline</button>
+              </a><br><br>";
     }
-
-        
-       
-
+    
         echo "</div>";
         echo "</div>";
         echo "</div>";
-    }
+    } 
 } else {
     echo "Error: " . mysqli_error($conn);
 }
@@ -194,3 +194,5 @@ if ($result) {
 // Close connection
 mysqli_close($conn);
 ?>
+
+

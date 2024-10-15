@@ -123,9 +123,9 @@ echo "<style type='text/css'>
 
 </style>";
 // SQL query to fetch data from the tutor table where approvalStatus is 'Approved'
-$sql = "SELECT tutorID, firstName, lastName, degreeProgram, year, profilePicture, subjectExpertise, availableDaysTime, teachingMode, ratePerHour, bio 
+$sql = "SELECT tutorID, firstName, lastName, degreeProgram, year, profilePicture, subjectExpertise, teachingMode, ratePerHour, bio 
 FROM tutor 
-WHERE approvalStatus = 'Approved' AND subjectExpertise IS NOT NULL AND availableDaysTime IS NOT NULL AND teachingMode IS NOT NULL AND ratePerHour IS NOT NULL AND bio IS NOT NULL";
+WHERE approvalStatus = 'Approved' AND subjectExpertise IS NOT NULL AND teachingMode IS NOT NULL AND ratePerHour IS NOT NULL AND bio IS NOT NULL";
 
 $result = mysqli_query($conn, $sql);
 

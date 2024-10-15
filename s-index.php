@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 include('php/s-auth.php');
 include('connection/dbconfig.php'); // Include your database connection file
 
@@ -51,7 +52,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             <a class="dropdown-item" href="s-waitingforpayment.php">Waiting for Payment</a>
                             <a class="dropdown-item" href="s-approved.php">Accepted</a>
                             <a class="dropdown-item" href="s-declined.php">Declined</a>
-                            <a class="dropdown-item" href="#">Finished</a>
+                            <a class="dropdown-item" href="s-finished.php">Finished</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -66,7 +67,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             <?php echo $user_firstname; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="s-logout.php">Logout</a>
+                        <a class="dropdown-item" href="s-logout.php">Logout</a>
                         </div>
                     </li>
                 </ul>

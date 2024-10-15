@@ -1,5 +1,4 @@
 <?php 
-
 // Get the email of the currently logged-in tutor user from the session
 $email = $_SESSION['auth_tutor']['tutor_email'];
 
@@ -30,7 +29,6 @@ if ($result && $result->num_rows > 0) {
 } else {
     $status_message = "No records found for the logged-in user.";
 }
-
 // Close database connection
 mysqli_close($conn);
 

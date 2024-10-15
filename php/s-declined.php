@@ -125,7 +125,7 @@ $studentID = $_SESSION['auth_user']['user_id'];
 // Query to fetch sessions for the logged-in student
 $sql = "SELECT s.sessionID, DATE_FORMAT(s.sessionDate, '%M %e, %Y') AS formattedSessionDate, TIME_FORMAT(s.startTime, '%h:%i %p') AS formattedStartTime, TIME_FORMAT(s.endTime, '%h:%i %p') AS formattedEndTime, s.duration, s.subject, s.teachingMode, s.need, s.paymentStatus, s.status, 
         CASE
-            WHEN s.status = 'Cancelled' THEN 'Cancelled by You'
+            WHEN s.status = 'Cancelled' THEN 'Cancelled By You'
             ELSE s.status
         END AS status,
         CONCAT(t.firstname, ' ', t.lastname) AS tutorFullName, t.ratePerHour, t.profilePicture

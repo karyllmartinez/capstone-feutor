@@ -16,10 +16,12 @@ if (isset($_GET['sessionID'])) {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $sessionID, $tutorID);
         $stmt->execute();
+        
         // Check if the update was successful
         if ($stmt->affected_rows > 0) {
-            // Redirect to tutor's dashboard
-            header("Location: ../t-dashboard.php");
+            // Redirect to the referring page (the page the user came from)
+            $previousPage = $_SERVER['HTTP_REFERER'] ?? '../t-dashboard.php'; // Default to dashboard if referer is not set
+            header("Location: " . $previousPage);
             exit();
         } else {
             // Display an error message if the session ID is not found or does not belong to the tutor

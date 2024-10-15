@@ -107,10 +107,7 @@ include('connection/dbconfig.php'); // Include your database connection file
 
                             
 
-                            <div class="mb-3">
-                                <label>Available Days & Time</label>
-                                <input type="text" name="availableDaysTime" required placeholder="Ex: Mon - 3:00pm - 5:00pm" class="form-control">
-                            </div>
+                      
 
                             <div class="mb-3">
                                 <label>Teaching Mode</label>

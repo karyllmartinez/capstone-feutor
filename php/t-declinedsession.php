@@ -169,7 +169,7 @@ if ($result) {
 
         echo "<p class= 'rate'>Total Cost: ₱" . number_format($row['duration'] * $row['ratePerHour'], 2) . "</p>";
 
-        echo "<a href=''>
+        echo "<a href='#'>
         <button class='btn btn-outline-custom1'>View Details</button>
       </a><br><br>";
      

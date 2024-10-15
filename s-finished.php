@@ -16,6 +16,8 @@ include('connection/dbconfig.php'); // Include your database connection file
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
@@ -49,7 +51,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             <a class="dropdown-item" href="s-waitingforpayment.php">Waiting for Payment</a>
                             <a class="dropdown-item" href="s-approved.php">Accepted</a>
                             <a class="dropdown-item" href="s-declined.php">Declined</a>
-                            <a class="dropdown-item" href="#">Finished</a>
+                            <a class="dropdown-item" href="s-finished.php">Finished</a>
                         </div>
                     </li>
                     <li class="nav-item">
