@@ -259,77 +259,40 @@ if ($result) {
           <td style = 'width: 100%;' >
             <table style = 'width: 100%; height: 100%;'>
               <tbody style = 'width: 100%; '>
-                <tr style = 'display:flex; width: 100%; '>
-                  <td style = 'width: 100%;' >
-                    <p style = 'font-weight: bold; font-size: 20px'>" . $row['tutorFullName'] . "</p>
-                  </td>
-                </tr>
+                <tr style='display: flex; width: 100%;'>
+                                        <td style='width: 100%;'>
+                                            <p style='font-weight: bold; font-size: 20px;'>" . $row['tutorFullName'] . "</p>
+                                        </td>
+                                    </tr>
+                                    <tr style='display: flex; width: 100%;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <div style='display: flex; width: 100%; align-items: center;'>
+                                                <img src='icons/mode.png' class='iconmode' />
+                                                <div style='margin-left: 10px;'>" . $row['teachingMode'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedSessionDate'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedStartTime'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedEndTime'] . "</div>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                <tr style = 'display:flex; width: 100%;  ' >
-                  <td style = 'margin: 0; padding: 0; width: 100%; '>
-                    <div style='display:flex;  width: 100%; height: 100%; '>
-                      <div style = 'margin: 0; padding: 0;'>
-                        <img src='icons/mode.png' class='iconmode'/>
-                      </div>
-
-                      <div style='margin-left:10px; margin-right: 10px;'>
-                        <p>" . $row['teachingMode'] . "</p>
-                      </div>
-
-                      <div>
-                        <div style='border-left: 1px solid black; height: 80%; margin-left: 10px;'></div>
-                      </div>
-
-                      <div style='margin-left:10px; margin-right: 10px;'>
-                        <p> " . $row["formattedSessionDate"] . " </p>
-                      </div>
-
-                      <div>
-                         <div style='border-left: 1px solid black; height: 30px; '></div>
-                      </div>
-
-                      <div style='margin-left:10px; margin-right: 10px;'>
-                        <p> " . $row["formattedStartTime"] .  " </p>
-                      </div>
-
-                      <div>
-                         <div style='border-left: 1px solid black; height: 30px; '></div>
-                      </div>
-
-                      <div style='margin-left:10px; margin-right: 10px;'>
-                        <p> " . $row["formattedEndTime"] .  " </p>
-                      </div>
-
-                    </div>
-                  </td>
-                </tr>
-
-                <tr style = 'display:flex; width: 100%;  ' >
-                  <td style = 'margin: 0; padding: 0; width: 100%; '>
-                    <div style='display:flex;  width: 100%; height: 100%; '>
-                      <div style = 'margin: 0; padding: 0;'>
-                        <img src='icons/subj.png' class='iconsubj'/>
-                      </div>
-
-                      <div style='margin-left:10px; margin-right: 10px;'>
-                        <p>" . $row['subject'] . "</p>
-                      </div>
-
-                    </div>
-                  </td>
-                </tr>
-
-                <tr style = 'display:flex; width: 100%;  ' >
-                  <td style = 'margin: 0; padding: 0; width: 100%; '>
-                    <div style='display:flex;  width: 100%; height: 100%; '>
-
-                      <div>
-                        <p>Total Cost: ₱" . number_format($row['duration'] * $row['ratePerHour'], 2) ."</p>
-                      </div>
-
-                    </div>
-                  </td>
-                </tr>
+                                    <tr style='display: flex; width: 100%;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <div style='display: flex; align-items: center;'>
+                                                <img src='icons/subj.png' class='iconsubj' />
+                                                <div style='margin-left: 10px;'>" . $row['subject'] . "</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr style='display: flex; width: 100%;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <p>Total Cost: ₱" . number_format($row['duration'] * $row['ratePerHour'], 2) . "</p>
+                                        </td>
+                                    </tr>
 
                 
 
@@ -338,28 +301,24 @@ if ($result) {
           </td>
         </tr>
 
-        <tr style = 'width: 40%; display: flex; justify-content: center;  flex: center; text-align: center; '>
-          <td style = 'width: 100%;' >
-           
-              <table style = 'width: 100%;'>
-              <tbody style = 'width: 100%; '>
-                <tr style = 'width: 100%; '> 
-                  <td style = 'width: 100%;'>
-                    <p class = 'bio'>Status:</p style = 'width: 100%;'>
-                  </td>
-                </tr> 
-
-                <tr>
-                  <td>
-                    <p class = 'bio'>" . $row['status'] ."</p>
-                  </td>
-                </tr> 
-              </tbody>
-              </table>
-            
-          </td>
-         
-        </tr>
+        <tr style='width: 30%; display: flex; justify-content: center; align-items: start; text-align: center;'>
+                        <td style='width: 100%;'>
+                            <table style='width: 100%;'>
+                                <tbody style='width: 100%;'>
+                                    <tr>
+                                        <td>
+                                            <p class='bio'>Status:</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class='bio'>" . $row['status'] . "</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
 
         <tr style = 'width: 20%;  display: flex; justify-content: center;  flex: center; text-align: center; '>
           <td style = 'width: 100%;' >

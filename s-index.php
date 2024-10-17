@@ -40,7 +40,7 @@ include('connection/dbconfig.php'); // Include your database connection file
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="s-index.php">Find a Tutor</a>
+                    <a class="nav-link" href="s-index.php">Find a Tutor</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="appointmentsDropdown" role="button"
@@ -48,7 +48,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             Appointments
                         </a>
                         <div class="dropdown-menu" aria-labelledby="appointmentsDropdown">
-                            <a class="dropdown-item" href="s-pending.php">Pending</a>
+                        <a class="dropdown-item" href="s-pending.php">Pending</a>
                             <a class="dropdown-item" href="s-waitingforpayment.php">Waiting for Payment</a>
                             <a class="dropdown-item" href="s-approved.php">Accepted</a>
                             <a class="dropdown-item" href="s-declined.php">Declined</a>
@@ -67,7 +67,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                             <?php echo $user_firstname; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="s-logout.php">Logout</a>
+                            <a class="dropdown-item" href="s-logout.php">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -75,7 +75,7 @@ include('connection/dbconfig.php'); // Include your database connection file
         </div>
     </nav>
 
-  <div class="card" style="width: 23rem; height: 30%; position: absolute; margin-left: 5%; margin-top: 6%; border: 0.5px solid #ccc !important;">
+  <!-- <div class="card" style="width: 23rem; height: 30%; position: absolute; margin-left: 5%; margin-top: 6%; border: 0.5px solid #ccc !important;">
     <div class="card-body shadow">
       <h5 class="card-title">What would you like to learn?</h5>
       <div class="mb-3">
@@ -83,9 +83,9 @@ include('connection/dbconfig.php'); // Include your database connection file
           <option value="" disabled>Select Subject Expertise</option>
               <?php include ('php/t-subj.php');?>
           </select>
-      </div>
+      </div> -->
 
-      <h5 class="card-title">Lesson Location</h5>
+      <!-- <h5 class="card-title">Lesson Location</h5>
       <div class="container">
             <div class="form-group">
                 <div class="form-check">
@@ -98,7 +98,7 @@ include('connection/dbconfig.php'); // Include your database connection file
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     
 
@@ -119,7 +119,7 @@ include('connection/dbconfig.php'); // Include your database connection file
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -127,7 +127,7 @@ include('connection/dbconfig.php'); // Include your database connection file
         $(document).ready(function() {
             $('.form-select').select2();
         });
-    </script>
+    </script> -->
 
 
     

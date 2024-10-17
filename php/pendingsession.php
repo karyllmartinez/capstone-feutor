@@ -11,17 +11,9 @@ echo "<style type='text/css'>
   object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 .tutorName{
-  position:absolute; 
-  top:10%; 
-  left:5%; 
-  margin-left:0px; 
-  margin-right:0px; 
   font-size: 20px;
 }
 .degreeProgram{
-  position:absolute; 
-  top:25%; 
-  left:17%; 
   margin-left:0px; 
   margin-right:0px; 
   font-size: 15px;
@@ -35,9 +27,7 @@ echo "<style type='text/css'>
   margin-left: 1%;
 }
 .mode{
-  position:absolute; 
-  top:30%; 
-  left:3.5%; 
+  
   margin-left:1px; 
   margin-right:0px; 
   font-size: 15px;
@@ -46,16 +36,12 @@ echo "<style type='text/css'>
 .iconmode{
   width: 20px; /* Set a fixed width */
   height: 20px; /* Set a fixed height */
-  position:relative; 
-  margin-bottom:0.5%;
-  margin-right:0.5%;
-  margin-left: 1%;
+  margin: 0;
+ 
   object-fit: cover;
 }
 .subj{
-  position:absolute; 
-  top:55%; 
-  left:3.5%; 
+  
   margin-left:1px; 
   margin-right:0px; 
   font-size: 15px;
@@ -65,20 +51,18 @@ echo "<style type='text/css'>
 .iconsubj{
   width: 19px; /* Set a fixed width */
   height: 20px; /* Set a fixed height */
-  position:relative; 
+
   margin-bottom:0.5%;
   margin-right:0.5%;
   margin-left: 1%;
   object-fit: cover;
+ 
 }
 .bio{
-  position: absolute;
-  top: 20%;
-  left: 49%;
-  margin-left: 1px;
-  margin-right: 0px;
+ 
+  
   font-size: 15px;
-  width: 58%;
+  width: 100%;
   color: #666; /* Grey font color */
   font-style: italic; /* Italic font */
 }
@@ -89,17 +73,16 @@ echo "<style type='text/css'>
     border-color: #0F422A;
     font-weight: bold;
     letter-spacing: 0.05em;
-    position: absolute;
-    left: 80%;
-    width: 200px; /* Adjust width as needed */
+  
+   width: 100%;
 }
 
 .btn-outline-custom1 {
-    top: 20%;
+    width: 100%;
 }
-
+  
 .btn-outline-custom2 {
-    top: 49%;
+ width: 100%;
 }
 .rate{
   top:80%;
@@ -110,7 +93,15 @@ echo "<style type='text/css'>
   z-index: 2;
   font-size: 15px;
   font-weight: 300px;
-
+}
+.btn-outline-custom1 {
+    color: #0F422A;
+    background-color: #ffffff;
+    border-color: #0F422A;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  
+   width: 60%;
 }
 
 </style>";
@@ -136,27 +127,190 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         $sessionID = $row['sessionID'];
 
-        echo "<div class='col-md-12 mb-3' style = 'margin-left:0px; width:100% !important;'>";
-        echo "<div class='card shadow custom-card' style='height: 200px; margin-top: 1%;'>";
-        echo "<div class='card-body'>";
+      
 
-        echo "<h4 class = 'tutorName'> " . $row['tutorFullName'] . "</h4>";
-        echo "<p class='mode'>" . "<img src = 'icons/mode.png' class = 'iconmode'/>"  . $row['teachingMode'] . "  ". "<strong>|</strong>" . "  ". $row["formattedSessionDate"] .  "  ". "<strong>|</strong>" . "  " .   $row["formattedStartTime"] ." - ".   $row["formattedEndTime"] ."</p>";
-        echo "<p class='subj'> " . "<img src = 'icons/subj.png' class = 'iconsubj'/>"  . $row['subject'] . "</p>";
+        echo "
+
+       <div class='col-md-12 mb-3' style='margin-left:0px; width:100% !important;'>
+    <div class='card shadow custom-card' style='height: 100%; margin-top: 1%;'>
+        <div class='card-body'>
+            <div style='display: flex; width: 100%;'>
+                <!-- First Column (Tutor Info) -->
+                 <table style='width: 100%;'>
+                <tbody style='display: flex; width: 100%;'>
+                
+                    <!-- First Column (Tutor Info) -->
+                    <tr style='display: flex; width: 40%;'>
+                        <td style='width: 100%;'>
+                            <table style='width: 100%; height: 100%;'>
+                                <tbody style='width: 100%;'>
+                                    <tr style='display: flex; width: 100%;'>
+                                        <td style='width: 100%;'>
+                                            <p style='font-weight: bold; font-size: 20px;'>" . $row['tutorFullName'] . "</p>
+                                        </td>
+                                    </tr>
+                                    <tr style='display: flex; width: 100%;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <div style='display: flex; width: 100%; align-items: center;'>
+                                                <img src='icons/mode.png' class='iconmode' />
+                                                <div style='margin-left: 10px;'>" . $row['teachingMode'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedSessionDate'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedStartTime'] . "</div>
+                                                <div style='border-left: 1px solid black; height: 30px; margin-left: 10px;'></div>
+                                                <div style='margin-left: 10px;'>" . $row['formattedEndTime'] . "</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr style='display: flex; width: 100%; margin-top:10px;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <div style='display: flex; align-items: center;'>
+                                                <img src='icons/subj.png' class='iconsubj' />
+                                                <div style='margin-left: 10px;'>" . $row['subject'] . "</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr style='display: flex; width: 100%; margin-top:10px;'>
+                                        <td style='margin: 0; padding: 0; width: 100%;'>
+                                            <p>Total Cost: ₱" . number_format($row['duration'] * $row['ratePerHour'], 2) . "</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Second Column (Status) -->
+                    <tr style='width: 30%; display: flex; justify-content: center; align-items: start; text-align: center;'>
+                        <td style='width: 100%;'>
+                            <table style='width: 100%;'>
+                                <tbody style='width: 100%;'>
+                                    <tr>
+                                        <td>
+                                            <p class='bio'>Status:</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class='bio'>" . $row['status'] . "</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Third Column (Button) -->
+                    <tr style='width: 30%; display: flex; justify-content: end; align-items: start; text-align: end;'>
+                        <td style='width: 100%;'>
+                            <button type='button' class='btn btn-outline-custom1' data-toggle='modal' data-target='#detailsModal{$sessionID}'>View Details</button>
+                        </td>
+                    </tr>
+                
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+  
         
-        echo "<p class = 'bio'>Status: <br>" . $row['status'] . "</p>";
-
-        echo "<p class= 'rate'>Total Cost: ₱" . number_format($row['duration'] * $row['ratePerHour'], 2) . "</p>";
-
-        echo "<a href=''>
-        <button class='btn btn-outline-custom1'>View Details</button>
-      </a><br><br>";
         
-       
+        ";
 
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
+        echo "
+                <div class='modal fade' id='detailsModal{$sessionID}' tabindex='-1' role='dialog' aria-labelledby='detailsModalLabel{$sessionID}' aria-hidden='true'>
+                  <div class='modal-dialog modal-dialog-centered' role='document'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                        </button>
+                      </div>
+                      <div class='modal-body'>
+
+
+                     
+                        
+                        
+                        
+                        
+                      
+
+
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p style='font-weight: bold; font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Student-Tutor: " . $row['tutorFullName'] . "</p>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+    
+                                <p class='modal-text' style='font-weight: bold; font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Subject: " . htmlspecialchars($row['subject']) . "</p>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                              <p class='modal-text' style=' font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Teaching Mode: " . htmlspecialchars($row['teachingMode']) . "</p>
+                                
+                              </td>
+                            </tr>
+
+                             <tr>
+                              <td>
+                                <p class='modal-text' style=' font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Date: " . htmlspecialchars($row['formattedSessionDate']) . "</p>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p class='modal-text' style=' font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Time: " . htmlspecialchars($row['formattedStartTime']) . " - " . htmlspecialchars($row['formattedEndTime']) . "</p> 
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                  <p class='modal-text' style='font-weight: bold; font-size: 15px; display: flex; justify-content: start; color: #0F422A'>Need:</p>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                  <p class='modal-text' style=' font-size: 15px; display: flex; justify-content: start; color: #0F422A'> " . htmlspecialchars($row['need']) . "</p>
+                              </td>
+                            </tr>
+
+
+
+                          </tbody>
+                        </table>
+                      </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ";     
+                
+        
+
+
+     
+
+
+
+        
+      
+        
+     
     }
 } else {
     echo "Error: " . mysqli_error($conn);
