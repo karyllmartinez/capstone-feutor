@@ -73,12 +73,14 @@ include('php/approvalStatus.php');
             <h2 class="card-title">Approval Status</h2>
           </div>
           <div class="card-body">
-            <p><?php echo $status_message; ?></p>
+            <p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <?php echo $status_message; ?></p>
 
   
   <!-- jQuery, Popper.js, and Bootstrap JS -->

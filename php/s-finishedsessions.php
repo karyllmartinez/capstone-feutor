@@ -163,6 +163,8 @@ echo "<style type='text/css'>
 // Retrieve logged-in student's studentID
 $studentID = $_SESSION['auth_user']['user_id'];
 
+
+
 // Query to fetch sessions for the logged-in student
 $sql = "SELECT s.sessionID, DATE_FORMAT(s.sessionDate, '%M %e, %Y') AS formattedSessionDate, TIME_FORMAT(s.startTime, '%h:%i %p') AS formattedStartTime, TIME_FORMAT(s.endTime, '%h:%i %p') AS formattedEndTime, s.duration, s.subject, s.teachingMode, s.need, s.paymentStatus, s.status, 
         
@@ -223,27 +225,20 @@ if (isset($_POST['submitReview'])) {
 
 
 
-// Check if the query was successful
 if ($result) {
-  // PayPal SDK script
-  echo "<script src='https://www.paypal.com/sdk/js?client-id=sb&currency=PHP&disable-funding=credit,card'></script>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        $sessionID = $row['sessionID'];
 
-  // Loop through the result set and display the data
-  while ($row = mysqli_fetch_assoc($result)) {
-    $sessionID = $row['sessionID'];
+        // Check if the student has already submitted a review for this session
+        $reviewCheckSql = "SELECT * FROM review WHERE sessionID = '$sessionID' AND studentID = '$studentID'";
+        $reviewCheckResult = mysqli_query($conn, $reviewCheckSql);
+        $reviewExists = mysqli_num_rows($reviewCheckResult) > 0;
 
-    $reviewCheckSql = "SELECT * FROM `review` WHERE `sessionID` = '$sessionID' AND `studentID` = '$studentID'";
-    $reviewCheckResult = mysqli_query($conn, $reviewCheckSql);
-    $reviewExists = mysqli_num_rows($reviewCheckResult) > 0;
-
-    if ($reviewExists) {
-      $reviewRow = mysqli_fetch_assoc($reviewCheckResult);
-      $rating = $reviewRow['rating'];
-      $comment = $reviewRow['comment'];
-
-
-     
-  }
+        if ($reviewExists) {
+            $reviewRow = mysqli_fetch_assoc($reviewCheckResult);
+            $rating = $reviewRow['rating'];
+            $comment = $reviewRow['comment'];
+        }
     
 
 
@@ -301,24 +296,28 @@ if ($result) {
           </td>
         </tr>
 
-        <tr style='width: 30%; display: flex; justify-content: center; align-items: start; text-align: center;'>
-                        <td style='width: 100%;'>
-                            <table style='width: 100%;'>
-                                <tbody style='width: 100%;'>
-                                    <tr>
-                                        <td>
-                                            <p class='bio'>Status:</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class='bio'>" . $row['status'] . "</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
+        <tr style = 'width: 40%; display: flex; justify-content: center;  flex: center; text-align: center; '>
+          <td style = 'width: 100%;' >
+           
+              <table style = 'width: 100%;'>
+              <tbody style = 'width: 100%; '>
+                <tr style = 'width: 100%; '> 
+                  <td style = 'width: 100%;'>
+                    <p class = 'bio'>Status:</p style = 'width: 100%;'>
+                  </td>
+                </tr> 
+
+                <tr>
+                  <td>
+                    <p class = 'bio'>" . $row['status'] ."</p>
+                  </td>
+                </tr> 
+              </tbody>
+              </table>
+            
+          </td>
+         
+        </tr>
 
         <tr style = 'width: 20%;  display: flex; justify-content: center;  flex: center; text-align: center; '>
           <td style = 'width: 100%;' >
@@ -328,7 +327,7 @@ if ($result) {
                 <tr style = 'width: 100%; '> 
                   <td style = 'width: 100%;'>";
                   if (!$reviewExists) {
-                    echo "<button class='btn btn-outline-custom1' data-toggle='modal' data-target='#detailsModal'>Rate</button>";
+                    echo "<button class='btn btn-outline-custom1' data-toggle='modal' data-target='#detailsModal_$sessionID'>Rate</button>";
                 }
         
 echo "                 
@@ -346,7 +345,7 @@ echo "
                   <td>";
 
                   if ($reviewExists) {
-                    echo "<button class='btn btn-outline-custom2' data-toggle='modal' data-target='#detailsModal2'>View Rating</button>";
+                    echo "<button class='btn btn-outline-custom2' data-toggle='modal' data-target='#detailsModal2_$sessionID'>View Rating</button>";
                   }
 
 echo "                      
@@ -367,97 +366,58 @@ echo "
 
   ";
 
-    
-
-
-    echo "
 
     
-      <div class='modal fade' id='detailsModal' tabindex='-1' role='dialog' aria-hidden='true'>
-        <div class='modal-dialog modal-dialog-centered' role='document'>
-          <div class='modal-content'>
+
+
+  echo "
+<div class='modal fade' id='detailsModal_$sessionID' tabindex='-1' role='dialog' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
             <div class='modal-header'>
-              <h5 class='modal-title' id='detailsModalLabel{$sessionID}'></h5>
-              <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-              </button>
+                <h5 class='modal-title'>Rate Your Tutor</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
             </div>
             <div class='modal-body'>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <p style='font-weight: bold; font-size: 15px; display: flex; justify-content: start;'>" . $row['tutorFullName'] . "</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p style='font-size: 15px; display: flex; justify-content: start;'>Subject: " . $row['subject'] . "</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p style='font-weight: bold; font-size: 20px; display: flex; justify-content: start;'>Your Rating:</p>
-                    </td>
-                  </tr>
-
-                  <form method='post' action=''>
-                  <tr>
-                    <td>
-                      
-                        <div class='rate'>
-                          <input type='radio' id='star5' name='rating' value='5' required />
-                          <label for='star5' title='5 stars'>5 stars</label>
-                          <input type='radio' id='star4' name='rating' value='4' />
-                          <label for='star4' title='4 stars'>4 stars</label>
-                          <input type='radio' id='star3' name='rating' value='3' />
-                          <label for='star3' title='3 stars'>3 stars</label>
-                          <input type='radio' id='star2' name='rating' value='2' />
-                          <label for='star2' title='2 stars'>2 stars</label>
-                          <input type='radio' id='star1' name='rating' value='1' />
-                          <label for='star1' title='1 star'>1 star</label>
-                        </div>
-                        
-                        <input type='hidden' name='sessionID' value='{$sessionID}' />
-                        <input type='hidden' name='studentID' value='{$studentID}' />
-                        
-                      
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p style='font-weight: bold; font-size: 20px; display: flex; justify-content: start;'>Feedback:</p>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <textarea id='comment' name='comment' style=' display: flex; justify-content: start;' required></textarea>
-                      <button type='submit' name='submitReview' class='btn btn-primary'>Submit Review</button>
-                      
-                    </td>
-                  </tr>
-
-                  </form>
-                </tbody>
-              </table>
+                <form method='post'>
+                    <input type='hidden' name='sessionID' value='$sessionID'>
+                    <input type='hidden' name='studentID' value='$studentID'> <!-- Add this line -->
+                    <div class='rate'>
+                        <input type='radio' id='star5_$sessionID' name='rating' value='5' />
+                        <label for='star5_$sessionID' class='star'>&#9733;</label>
+                        <input type='radio' id='star4_$sessionID' name='rating' value='4' />
+                        <label for='star4_$sessionID' class='star'>&#9733;</label>
+                        <input type='radio' id='star3_$sessionID' name='rating' value='3' />
+                        <label for='star3_$sessionID' class='star'>&#9733;</label>
+                        <input type='radio' id='star2_$sessionID' name='rating' value='2' />
+                        <label for='star2_$sessionID' class='star'>&#9733;</label>
+                        <input type='radio' id='star1_$sessionID' name='rating' value='1' />
+                        <label for='star1_$sessionID' class='star'>&#9733;</label>
+                    </div>
+                    <textarea name='comment' placeholder='Leave a comment...' class='form-control' rows='3'></textarea>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                        <button type='submit' name='submitReview' class='btn btn-primary'>Submit Review</button>
+                    </div>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
-";
+    </div>
+</div>";
+
 
 
 
 
 
 echo "
-    <div class='modal fade' id='detailsModal2' tabindex='-1' role='dialog' aria-hidden='true'>
+    <div class='modal fade' id='detailsModal2_$sessionID' tabindex='-1' role='dialog' aria-hidden='true'>
       <div class='modal-dialog modal-dialog-centered' role='document'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <h5 class='modal-title' id='detailsModalLabel{$sessionID}'></h5>
+            <h5 class='modal-title' id='detailsModalLabel2{$sessionID}'></h5>
             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>&times;</span>
             </button>

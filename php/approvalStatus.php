@@ -1,8 +1,14 @@
 <?php 
 
+echo "
 
 
 
+
+
+
+
+";
 
 // Get the email of the currently logged-in tutor user from the session
 $email = $_SESSION['auth_tutor']['tutor_email'];

@@ -54,13 +54,12 @@ echo "<style type='text/css'>
 }
 .subj{
   position:absolute; 
-  top:55%; 
+  top:45%; 
   left:3.5%; 
   margin-left:1px; 
   margin-right:0px; 
   font-size: 15px;
   width: 100%;
-  font-weight: 600;
 }
 .iconsubj{
   width: 19px; /* Set a fixed width */
@@ -103,14 +102,13 @@ echo "<style type='text/css'>
 }
 .rate{
   top:80%;
-  left:5%;
+  left:4.5%;
   width:200px;
   height:40px;
   position: absolute;
   z-index: 2;
   font-size: 15px;
-  font-weight: 300px;
-
+  font-weight: 600;
 }
 
 </style>";
